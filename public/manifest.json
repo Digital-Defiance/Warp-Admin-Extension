@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Warp 12 DevTools",
+  "version": "0.10.0",
+  "description": "Local simulation admin controls for Warp 12.",
+  "action": {
+    "default_title": "Warp 12 DevTools"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://localhost/*", "http://127.0.0.1/*"],
+      "js": ["content-bridge.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*"],
+  "permissions": ["sidePanel", "tabs"],
+  "web_accessible_resources": [
+    {
+      "resources": ["bridge-page.js"],
+      "matches": ["http://localhost/*", "http://127.0.0.1/*"]
+    }
+  ]
+}
